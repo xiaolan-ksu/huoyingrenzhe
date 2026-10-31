@@ -2,7 +2,7 @@
 
 火影忍者手游的替身冷却计时器。定时截屏读取对面替身豆的状态，对手用掉替身时自动开始倒计时。
 
-不读内存、不注入进程、不 hook 游戏。双击 `dist\替身计时器.exe` 运行（`config.json` 需放在同目录）。
+只适配了 MuMu 模拟器，雷电模拟器自行测试。不读内存、不注入进程、不 hook 游戏。双击 `替身计时器.exe` 运行（`config.json` 需放在同目录）。
 
 思路参考了开源项目 [Naruto_Mobile_Game_Tool](https://github.com/K0NGCH4NG/Naruto_Mobile_Game_Tool) 与 [naruto-substitute-timer](https://github.com/fangxiaobaiqaq1/naruto-substitute-timer)（MIT）。代码独立实现，检测点坐标和颜色区间为本机实测值。
 
