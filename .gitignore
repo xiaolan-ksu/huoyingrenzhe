@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+
+# 打包产物（发布时用 GitHub Release 传，不进仓库）
+dist/
+build/
+*.spec
+
+# 本机临时文件
+*.png
+*_native*

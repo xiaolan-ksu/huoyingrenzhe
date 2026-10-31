@@ -1,0 +1,62 @@
+{
+  "_说明": "改完保存后重启程序生效。所有坐标都是屏幕物理像素，按 1920x1080 无缩放、模拟器全屏标定。以 _ 开头的字段是注释，程序会忽略。",
+
+  "player": "p1",
+  "_player": "p1 = 你在左侧，程序监测右侧（对面）；p2 = 你在右侧，监测左侧。打的时候自己剩几个心里清楚，需要盯的是对面。ask_player_on_start 控制每次启动是否弹选择框，想跳过就设 false。",
+  "ask_player_on_start": true,
+
+  "countdown_seconds": 14.5,
+  "_countdown_seconds": "替身冷却秒数。实测约 15 秒，这里微调到 14.5 让归零更贴合能按的时机。如果归零时游戏里还不能按，往上加 0.2-0.5。",
+
+  "poll_interval_ms": 100,
+  "_poll_interval_ms": "检测频率，100 = 每 0.1 秒看一次。想更灵敏可降到 50，CPU 占用翻倍。",
+
+  "tolerance": 4,
+  "_tolerance": "RGB 容差，每种颜色允许上下浮动多少。画面抖动大就调高，误判多就调低到 2。",
+
+  "dpi_unaware": true,
+  "_dpi_unaware": "强制关闭 Windows 缩放对坐标的影响。屏幕是 125%/150% 缩放时必须保持 true，否则检测点全偏。",
+
+  "window": {
+    "x": 1660,
+    "y": 940,
+    "width": 240,
+    "height": 130
+  },
+  "_window": "悬浮面板位置与大小。按住面板空白处可拖动，拖完不会自动保存，想固定位置就把这里的 x/y 改成拖好后的值。",
+
+  "detection": {
+    "enabled": true,
+    "margin": 4,
+    "confirm_frames": 2,
+    "min_trigger_gap": 3.0,
+    "prefix_check": true,
+    "map_to_window": "MuMu安卓设备",
+    "reference_size": [1920, 1080],
+    "require_foreground": ["火影", "MuMu", "雷电", "夜神", "LDPlayer", "BlueStacks"],
+
+    "left_points": [
+      [212, 126], [242, 127], [274, 127], [303, 125]
+    ],
+    "right_points": [
+      [1623, 126], [1651, 127], [1682, 124], [1710, 124]
+    ],
+
+    "bead_sample": {
+      "diamond_w": 9,
+      "diamond_h": 13,
+      "search_radius": 4,
+      "search_step": 2,
+      "search_scale": 0.6,
+      "min_samples": 12,
+      "majority_pct": 65
+    },
+
+    "colors": {
+      "dark":   {"min": [8, 28, 70],    "max": [75, 80, 125]},
+      "gold":   {"min": [165, 150, 0],  "max": [255, 255, 145]},
+      "bright": {"min": [100, 180, 210], "max": [220, 255, 255]}
+    }
+  },
+  "_detection": "坐标按 1920x1080 逻辑坐标存，运行时自动换算到当前画面：高度方向等比缩放，左右两侧各自贴边。所以改模拟器分辨率、换显示器、切全屏/窗口都不用重标。map_to_window 填模拟器窗口标题关键词，留空则整屏当画面。prefix_check = 排列校验，出现「亮 暗 亮」这种交替就判定读错、整帧作废。bead_sample 是菱形采样的尺寸和搜索范围，按 1920 基准给，实际会自动放大。colors 三个区间互不重叠：dark 已用掉，gold/bright 都算可用。"
+}
